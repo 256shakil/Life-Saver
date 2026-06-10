@@ -1,0 +1,6 @@
+{
+  "name": "Life Saver",
+  "description": "Connecting life-savers with patients in need. An efficient real-time blood donation network featuring find donor search, registration, and administration panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
