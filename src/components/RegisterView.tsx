@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Donor, ViewType } from '../types';
-import { BLOOD_GROUPS, GENDERS, HEALTH_STATUSES } from '../data';
+import { BLOOD_GROUPS, GENDERS, HEALTH_STATUSES, GEOGRAPHY } from '../data';
 import { PersonStanding, Contact, Locate, HeartHandshake, KeyRound, Sparkles, Check, AlertTriangle } from 'lucide-react';
 
 interface RegisterViewProps {
@@ -35,11 +35,24 @@ export default function RegisterView({ onRegisterDonor, onViewChange }: Register
   const [whatsapp, setWhatsapp] = useState('');
   const [email, setEmail] = useState('');
 
-  const [country, setCountry] = useState('United States');
+  const [country, setCountry] = useState('Bangladesh');
   const [division, setDivision] = useState('');
   const [district, setDistrict] = useState('');
   const [upazila, setUpazila] = useState('');
   const [address, setAddress] = useState('');
+
+  // Geographic helpers for Bangladesh selection
+  const divisionsList = Object.keys(GEOGRAPHY['Bangladesh'].upazilas);
+  const districtsList = GEOGRAPHY['Bangladesh'].districts;
+  const upazilasList = division && GEOGRAPHY['Bangladesh'].upazilas[division]
+    ? GEOGRAPHY['Bangladesh'].upazilas[division]
+    : [];
+
+  const handleDivisionChange = (div: string) => {
+    setDivision(div);
+    setDistrict(div);
+    setUpazila('');
+  };
 
   const [lastDonationDate, setLastDonationDate] = useState('');
   const [emergency, setEmergency] = useState<'yes' | 'no' | ''>('');
@@ -378,13 +391,9 @@ export default function RegisterView({ onRegisterDonor, onViewChange }: Register
                 id="country"
                 required
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="w-full bg-white dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2.5 text-xs text-neutral-700 focus:ring-2 focus:ring-red-100 outline-none"
+                disabled
+                className="w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2.5 text-xs text-neutral-500 focus:ring-2 focus:ring-red-100 outline-none"
               >
-                <option value="United States">United States</option>
-                <option value="Canada">Canada</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Australia">Australia</option>
                 <option value="Bangladesh">Bangladesh</option>
               </select>
             </div>
@@ -393,45 +402,55 @@ export default function RegisterView({ onRegisterDonor, onViewChange }: Register
               <label className="text-[11px] font-bold text-neutral-500 uppercase tracking-wide block" htmlFor="division">
                 Division / State <span className="text-red-600">*</span>
               </label>
-              <input
+              <select
                 id="division"
-                type="text"
                 required
                 value={division}
-                onChange={(e) => setDivision(e.target.value)}
-                className="w-full bg-white dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-100 outline-none"
-                placeholder="California"
-              />
+                onChange={(e) => handleDivisionChange(e.target.value)}
+                className="w-full bg-white dark:bg-neutral-855 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2.5 text-xs text-neutral-700 focus:ring-2 focus:ring-red-100 outline-none"
+              >
+                <option value="">Select Division</option>
+                {divisionsList.map(div => (
+                  <option key={div} value={div}>{div}</option>
+                ))}
+              </select>
             </div>
 
             <div className="space-y-1">
               <label className="text-[11px] font-bold text-neutral-500 uppercase tracking-wide block" htmlFor="district">
                 District / County <span className="text-red-600">*</span>
               </label>
-              <input
+              <select
                 id="district"
-                type="text"
                 required
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
-                className="w-full bg-white dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-100 outline-none"
-                placeholder="Los Angeles"
-              />
+                className="w-full bg-white dark:bg-neutral-855 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2.5 text-xs text-neutral-700 focus:ring-2 focus:ring-red-100 outline-none"
+              >
+                <option value="">Select District</option>
+                {districtsList.map(dist => (
+                  <option key={dist} value={dist}>{dist}</option>
+                ))}
+              </select>
             </div>
 
             <div className="space-y-1">
               <label className="text-[11px] font-bold text-neutral-500 uppercase tracking-wide block" htmlFor="upazila">
                 Upazila / Town <span className="text-red-600">*</span>
               </label>
-              <input
+              <select
                 id="upazila"
-                type="text"
                 required
                 value={upazila}
                 onChange={(e) => setUpazila(e.target.value)}
-                className="w-full bg-white dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-100 outline-none"
-                placeholder="Westwood"
-              />
+                disabled={!division}
+                className="w-full bg-white dark:bg-neutral-855 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2.5 text-xs text-neutral-700 focus:ring-2 focus:ring-red-100 outline-none disabled:opacity-50"
+              >
+                <option value="">Select Upazila</option>
+                {upazilasList.map(up => (
+                  <option key={up} value={up}>{up}</option>
+                ))}
+              </select>
             </div>
           </div>
 

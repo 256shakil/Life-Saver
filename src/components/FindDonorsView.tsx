@@ -15,7 +15,7 @@ interface FindDonorsViewProps {
 export default function FindDonorsView({ donors }: FindDonorsViewProps) {
   // Filter States
   const [selectedBloodGroups, setSelectedBloodGroups] = useState<string[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState<string>('');
+  const [selectedCountry, setSelectedCountry] = useState<string>('Bangladesh');
   const [selectedDivision, setSelectedDivision] = useState<string>('');
   const [selectedDistrict, setSelectedDistrict] = useState<string>('');
   const [selectedUpazila, setSelectedUpazila] = useState<string>('');
@@ -73,7 +73,7 @@ export default function FindDonorsView({ donors }: FindDonorsViewProps) {
   // Clear all filters
   const handleClearFilters = () => {
     setSelectedBloodGroups([]);
-    setSelectedCountry('');
+    setSelectedCountry('Bangladesh');
     setSelectedDivision('');
     setSelectedDistrict('');
     setSelectedUpazila('');
@@ -177,12 +177,10 @@ export default function FindDonorsView({ donors }: FindDonorsViewProps) {
               <select
                 value={selectedCountry}
                 onChange={(e) => handleCountryChange(e.target.value)}
-                className="w-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-700 dark:text-neutral-300 focus:ring-1 focus:ring-red-600 outline-none"
+                disabled
+                className="w-full bg-neutral-100 dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-500 dark:text-neutral-400 focus:ring-1 focus:ring-red-600 outline-none cursor-not-allowed"
               >
-                <option value="">Select Country</option>
-                {countries.map(country => (
-                  <option key={country} value={country}>{country}</option>
-                ))}
+                <option value="Bangladesh">Bangladesh (Only)</option>
               </select>
 
               {/* Select Division based on country */}
@@ -396,12 +394,10 @@ export default function FindDonorsView({ donors }: FindDonorsViewProps) {
                   <select
                     value={selectedCountry}
                     onChange={(e) => handleCountryChange(e.target.value)}
-                    className="w-full bg-stone-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-700 dark:text-neutral-300 focus:ring-1 focus:ring-red-600 outline-none cursor-pointer"
+                    disabled
+                    className="w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-500 dark:text-neutral-400 focus:ring-1 focus:ring-red-600 outline-none cursor-not-allowed"
                   >
-                    <option value="">All Countries</option>
-                    {countries.map(country => (
-                      <option key={country} value={country}>{country}</option>
-                    ))}
+                    <option value="Bangladesh">Bangladesh (Only)</option>
                   </select>
 
                   <select
