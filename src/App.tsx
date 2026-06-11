@@ -70,6 +70,7 @@ export default function App() {
             onApproveDonor={handleApproveDonor}
             onDeleteDonor={handleDeleteDonor}
             onEditDonor={handleEditDonor}
+            onRestoreDonors={setDonors}
           />
         )}
       </div>

@@ -25,6 +25,12 @@ export interface Donor {
   avatarUrl: string;
   status: 'Pending' | 'Approved';
   createdAt: string;
+  googleDriveDocs?: Array<{
+    name: string;
+    fileId: string;
+    webViewLink: string;
+    uploadedAt: string;
+  }>;
 }
 
 export type ViewType = 'home' | 'find-donors' | 'register' | 'admin';
