@@ -166,8 +166,8 @@ export default function App() {
       {/* Top sticky navigation header */}
       <Navbar currentView={currentView} onViewChange={setCurrentView} />
 
-      {/* Supabase connection alert status bar banner */}
-      {supabaseStatus.message && (
+      {/* Supabase connection alert status bar banner (authenticated admin only) */}
+      {currentView === 'admin' && isAdminAuthenticated && supabaseStatus.message && (
         <div className={`text-[11px] font-semibold text-center py-2 px-4 shadow-inner border-b transition-all flex items-center justify-center gap-2 select-none duration-300 animate-fade-in ${
           supabaseStatus.type === 'success'
             ? 'bg-emerald-50 border-emerald-100 text-emerald-800'

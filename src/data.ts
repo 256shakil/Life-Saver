@@ -1,4 +1,16 @@
 import { Donor, Campaign, Hospital } from './types';
+// @ts-ignore
+import hospitalOne from './assets/images/dhaka_medical_college_1781168150055.png';
+// @ts-ignore
+import hospitalTwo from './assets/images/evercare_dhaka_1781168167587.png';
+// @ts-ignore
+import hospitalThree from './assets/images/chattogram_medical_1781168182319.png';
+// @ts-ignore
+import hospitalFour from './assets/images/square_dhaka_1781168201391.png';
+// @ts-ignore
+import hospitalFive from './assets/images/united_dhaka_1781168214895.png';
+// @ts-ignore
+import hospitalSix from './assets/images/labaid_dhaka_1781168230390.png';
 
 export const INITIAL_DONORS: Donor[] = [
   {
@@ -236,13 +248,15 @@ export const HOSPITALS: Hospital[] = [
     location: 'Bakshibazar, Dhaka',
     contact: '+8802223363355',
     bloodNeeded: ['O-', 'B+', 'A+'],
+    imageUrl: hospitalOne,
   },
   {
     id: 'hosp-2',
     name: 'Evercare Hospital Dhaka',
     location: 'Bashundhara R/A, Dhaka',
     contact: '+8809612341066',
-    bloodNeeded: ['O-', 'AB-'],
+    bloodNeeded: ['O-', 'AB-', 'B-'],
+    imageUrl: hospitalTwo,
   },
   {
     id: 'hosp-3',
@@ -250,6 +264,31 @@ export const HOSPITALS: Hospital[] = [
     location: 'K.B. Fazlul Kader Road, Chattogram',
     contact: '+88031616891',
     bloodNeeded: ['A-', 'O+'],
+    imageUrl: hospitalThree,
+  },
+  {
+    id: 'hosp-4',
+    name: "Square Hospital",
+    location: "18/F Bir Uttam Qazi Nuruzzaman Sarak, Panthapath, Dhaka, Bangladesh",
+    contact: "+8801713377777",
+    bloodNeeded: ['O+', 'B-', 'A-'],
+    imageUrl: hospitalFour,
+  },
+  {
+    id: 'hosp-5',
+    name: "United Hospital Limited",
+    location: "Plot 15, Road 71, Gulshan 2, Dhaka, Bangladesh",
+    contact: "+8858815111",
+    bloodNeeded: ['B+', 'O-', 'AB-'],
+    imageUrl: hospitalFive,
+  },
+  {
+    id: 'hosp-6',
+    name: 'Labaid Specialized Hospital',
+    location: 'House 6, Road 4, Dhanmondi, Dhaka, Bangladesh',
+    contact: '+8801713333337',
+    bloodNeeded: ['A+', 'O+', 'B+'],
+    imageUrl: hospitalSix,
   },
 ];
 

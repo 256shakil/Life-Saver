@@ -10,6 +10,23 @@
   .animate-fade-in {
     animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
+  
+  .animate-marquee-l2r {
+    animation: marqueeL2R 45s linear infinite;
+  }
+  
+  .animate-marquee-l2r:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marqueeL2R {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 @keyframes fadeIn {

@@ -50,4 +50,5 @@ export interface Hospital {
   location: string;
   contact: string;
   bloodNeeded: string[];
+  imageUrl?: string;
 }

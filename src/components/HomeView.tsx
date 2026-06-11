@@ -8,6 +8,14 @@ import { ViewType, Campaign, Hospital } from '../types';
 import { CAMPAIGNS, HOSPITALS } from '../data';
 import { Heart, Users, ShieldAlert, Award, Calendar, Phone, MapPin, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
+// @ts-ignore
+import awarenessHero1 from '../assets/images/donation_awareness_hero_1781165764808.png';
+// @ts-ignore
+import awarenessHero2 from '../assets/images/blood_pulse_droplet_1781166036667.png';
+// @ts-ignore
+import awarenessHero3 from '../assets/images/diverse_hands_heart_1781166052366.png';
+// @ts-ignore
+import awarenessHero4 from '../assets/images/heart_tree_life_1781166065402.png';
 
 interface HomeViewProps {
   onViewChange: (view: ViewType) => void;
@@ -212,6 +220,136 @@ export default function HomeView({ onViewChange, totalDonorsCount }: HomeViewPro
         </div>
       </section>
 
+      {/* Blood Donation Awareness & Tagline Showcase */}
+      <section className="px-4 md:px-16 py-16 max-w-7xl mx-auto border-b border-rose-100 hover:border-red-200 dark:border-neutral-800 transition-colors animate-fade-in">
+        <div className="flex flex-col items-center text-center mb-12">
+          <span className="text-red-700 font-bold text-xs uppercase tracking-widest bg-red-50 dark:bg-red-950/40 px-3.5 py-1.5 rounded-full mb-3.5 flex items-center gap-1.5 border border-red-100 dark:border-red-900/30">
+            <Sparkles className="w-3.5 h-3.5 text-red-600 animate-spin" style={{ animationDuration: '6s' }} /> Awareness Campaigns
+          </span>
+          <h2 className="text-3xl font-extrabold text-neutral-900 dark:text-white font-sans tracking-tight leading-tight">
+            Share Life, Give Blood
+          </h2>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 max-w-xl">
+            Did you know a single blood donation can save up to 3 lives? Explore our active awareness pillars and get inspired to make a difference.
+          </p>
+        </div>
+
+        {/* 4 Cards grid - images on top, taglines placed directly UNDER the images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          {/* Card 1 */}
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-150 dark:border-neutral-800 rounded-3xl p-5 hover:border-red-200 dark:hover:border-red-900/40 hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative bg-red-50/50">
+                <img 
+                  src={awarenessHero1} 
+                  alt="Blood donation awareness illustration showing supportive hands holding a warm heart" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-red-950/5 to-transparent" />
+              </div>
+              <div>
+                <span className="text-[9px] font-extrabold tracking-wider text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-2 py-0.5 rounded uppercase font-mono">Pillar of Hope</span>
+                <h3 className="text-sm font-bold text-neutral-900 dark:text-white mb-2 mt-2 leading-snug font-sans">
+                  "Someone is smiling today because you gave."
+                </h3>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans">
+                  You don't need a medical degree to save lives. Just regular compassion, 15 minutes of quiet time, and a warm heart stand between a critical patient and a healthy tomorrow.
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-neutral-100 dark:border-neutral-800 mt-5 pt-3 flex items-center justify-between">
+              <span className="text-[10px] text-neutral-400 font-mono">Action Type</span>
+              <span className="text-[10px] text-red-650 font-bold bg-rose-50 dark:bg-red-900/20 px-2 py-0.5 rounded font-mono">Constant Need</span>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-150 dark:border-neutral-800 rounded-3xl p-5 hover:border-rose-250 dark:hover:border-rose-900/45 hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative bg-red-50/50">
+                <img 
+                  src={awarenessHero2} 
+                  alt="A glowing stylized blood droplet with an internal golden pulse heart line" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-red-950/5 to-transparent" />
+              </div>
+              <div>
+                <span className="text-[9px] font-extrabold tracking-wider text-rose-750 dark:text-rose-450 bg-rose-50 dark:bg-rose-950/30 px-2 py-0.5 rounded uppercase font-mono">Pillar of Safety</span>
+                <h3 className="text-sm font-bold text-neutral-900 dark:text-white mb-2 mt-2 leading-snug font-sans">
+                  "Safe blood saves lives; your gift is precious."
+                </h3>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans">
+                  The demand for screened blood is constant in hospitals. Your healthy lifestyle choices and safe donation habits ensure patients receive healthy transfusions that spark rapid recovery.
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-neutral-100 dark:border-neutral-800 mt-5 pt-3 flex items-center justify-between">
+              <span className="text-[10px] text-neutral-400 font-mono">Purity Indicator</span>
+              <span className="text-[10px] text-rose-600 font-bold bg-rose-50 dark:bg-red-900/20 px-2 py-0.5 rounded font-mono">100% Screened</span>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-150 dark:border-neutral-800 rounded-3xl p-5 hover:border-sky-250 dark:hover:border-sky-900/45 hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative bg-sky-50/30">
+                <img 
+                  src={awarenessHero3} 
+                  alt="Warm supportive hands forming a blooming flower cradling a glowing core heart" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-sky-950/5 to-transparent" />
+              </div>
+              <div>
+                <span className="text-[9px] font-extrabold tracking-wider text-sky-750 dark:text-sky-400 bg-sky-50 dark:bg-sky-955/30 px-2 py-0.5 rounded uppercase font-mono">Pillar of Miracles</span>
+                <h3 className="text-sm font-bold text-neutral-900 dark:text-white mb-2 mt-2 leading-snug font-sans">
+                  "Be the miracle that someone is praying for."
+                </h3>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans">
+                  Blood cannot be synthesized artificially in laboratories. It only exists when an extraordinary voluntary human donor steps up and decides to share safety with their local community.
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-neutral-100 dark:border-neutral-800 mt-5 pt-3 flex items-center justify-between">
+              <span className="text-[10px] text-neutral-400 font-mono">Origin Factor</span>
+              <span className="text-[10px] text-sky-600 font-bold bg-sky-50 dark:bg-sky-900/20 px-2 py-0.5 rounded font-mono">100% Voluntary</span>
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-150 dark:border-neutral-800 rounded-3xl p-5 hover:border-purple-250 dark:hover:border-purple-900/45 hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+            <div className="space-y-4">
+              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative bg-purple-50/20">
+                <img 
+                  src={awarenessHero4} 
+                  alt="Stylized tree of life with glowing heart-shaped leaves and deep gold roots" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-955/5 to-transparent" />
+              </div>
+              <div>
+                <span className="text-[9px] font-extrabold tracking-wider text-purple-750 dark:text-purple-400 bg-purple-50 dark:bg-purple-955/30 px-2 py-0.5 rounded uppercase font-mono">Pillar of Grace</span>
+                <h3 className="text-sm font-bold text-neutral-900 dark:text-white mb-2 mt-2 leading-snug font-sans">
+                  "An act of ultimate grace, growing a legacy."
+                </h3>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans">
+                  A tiny, momentary fifteen-minute pause in your day becomes an entire lifetime of smiles, laughter, accomplishments, and future dreams for a grateful recipient in need.
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-neutral-100 dark:border-neutral-800 mt-5 pt-3 flex items-center justify-between">
+              <span className="text-[10px] text-neutral-400 font-mono">Time Investment</span>
+              <span className="text-[10px] text-purple-600 font-bold bg-purple-50 dark:bg-purple-900/20 px-2 py-0.5 rounded font-mono">15 Minutes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Active Campaigns & Drives section */}
       <section id="campaigns-section" className="px-4 md:px-16 py-16 max-w-7xl mx-auto scrolling-mt-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
@@ -259,54 +397,84 @@ export default function HomeView({ onViewChange, totalDonorsCount }: HomeViewPro
       </section>
 
       {/* Partner Hospitals Listing */}
-      <section id="hospitals-section" className="px-4 md:px-16 py-12 max-w-7xl mx-auto border-t border-neutral-100 dark:border-neutral-800 scrolling-mt-12">
+      <section id="hospitals-section" className="px-4 md:px-16 py-12 max-w-7xl mx-auto border-t border-neutral-100 dark:border-neutral-800 scrolling-mt-12 overflow-hidden">
         <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2 font-sans text-center">
           Partner Healthcare Centers
         </h2>
-        <p className="text-sm text-neutral-500 text-center mb-10 max-w-lg mx-auto">
+        <p className="text-sm text-neutral-500 text-center mb-6 max-w-lg mx-auto">
           These verified clinical systems have live digital integrations with Life Saver to request urgent blood inventory.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {HOSPITALS.map((hosp) => (
-            <div key={hosp.id} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-100 dark:border-neutral-700 p-6 flex flex-col justify-between">
-              <div>
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="text-base font-bold text-neutral-900 dark:text-white font-sans leading-snug">
-                    {hosp.name}
-                  </h3>
-                  <span className="shrink-0 inline-flex items-center px-2 py-0.5 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400 text-[10px] font-bold rounded">
-                    Verified
-                  </span>
-                </div>
-                <p className="text-xs text-neutral-500 mb-4 flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 inline text-neutral-400" /> {hosp.location}
-                </p>
-              </div>
+        {/* Hover Interaction Guide */}
+        <div className="flex items-center justify-center gap-2 mb-6 animate-pulse">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-xs shadow-emerald-500/55" />
+          <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest font-mono">
+            Hover Any Card to Pause Auto-Scroll • Click to Call Hotline
+          </span>
+        </div>
 
-              <div>
-                <div className="mb-4">
-                  <span className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block mb-1">
-                    Urgent blood request
-                  </span>
-                  <div className="flex flex-wrap gap-1">
-                    {hosp.bloodNeeded.map((blood) => (
-                      <span key={blood} className="px-2 py-0.5 bg-red-700 text-white font-bold text-xs rounded">
-                        {blood}
+        {/* Marquee Wrapper */}
+        <div className="relative w-full overflow-hidden py-4 -mx-4 px-4 md:-mx-16 md:px-16">
+          {/* Sliding Track */}
+          <div className="flex w-max gap-6 animate-marquee-l2r py-2 pr-6">
+            {[...HOSPITALS, ...HOSPITALS].map((hosp, idx) => (
+              <div 
+                key={`${hosp.id}-${idx}`} 
+                className="w-[280px] sm:w-[320px] md:w-[350px] shrink-0 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-100 dark:border-neutral-800 hover:border-red-200 dark:hover:border-red-900/40 hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden group select-none"
+              >
+                {/* Hospital Photo */}
+                {hosp.imageUrl && (
+                  <div className="w-full aspect-[16/10] overflow-hidden relative bg-neutral-100 dark:bg-neutral-950">
+                    <img
+                      src={hosp.imageUrl}
+                      alt={hosp.name}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/30 via-transparent to-transparent mix-blend-multiply" />
+                  </div>
+                )}
+                
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="text-sm font-bold text-neutral-900 dark:text-white font-sans leading-snug line-clamp-1">
+                        {hosp.name}
+                      </h3>
+                      <span className="shrink-0 inline-flex items-center px-1.5 py-0.5 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400 text-[9px] font-bold rounded">
+                        Verified
                       </span>
-                    ))}
+                    </div>
+                    <p className="text-[11px] text-neutral-500 mb-4 flex items-center gap-1.5 line-clamp-1 font-sans">
+                      <MapPin className="w-3.5 h-3.5 text-neutral-400 shrink-0" /> {hosp.location}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="mb-4">
+                      <span className="text-[9px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block mb-1 font-mono">
+                        Urgent blood request
+                      </span>
+                      <div className="flex flex-wrap gap-1">
+                        {hosp.bloodNeeded.map((blood) => (
+                          <span key={blood} className="px-1.5 py-0.5 bg-red-700 text-white font-bold text-[10px] rounded font-sans">
+                            {blood}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <a
+                      href={`tel:${hosp.contact}`}
+                      className="w-full py-2 border border-neutral-250 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-semibold text-xs rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center justify-center gap-1.5 font-sans"
+                    >
+                      <Phone className="w-3.5 h-3.5 text-neutral-400" /> Call Hotline
+                    </a>
                   </div>
                 </div>
-
-                <a
-                  href={`tel:${hosp.contact}`}
-                  className="w-full py-2 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-semibold text-xs rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors flex items-center justify-center gap-1"
-                >
-                  <Phone className="w-3.5 h-3.5" /> Call Hotline
-                </a>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
