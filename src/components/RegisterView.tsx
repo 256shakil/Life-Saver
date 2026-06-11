@@ -108,7 +108,7 @@ export default function RegisterView({ onRegisterDonor, onViewChange }: Register
       weight: weight ? parseInt(weight) : undefined,
       healthStatus,
       avatarUrl: selectedAvatarUrl,
-      status: 'Pending', // New registrations go into "Pending" status for Admin Panel approval simulation!
+      status: 'Approved', // New registrations go into Approved status since Admin Panel is hidden
     });
 
     setRegisteredName(fullName);
@@ -152,7 +152,7 @@ export default function RegisterView({ onRegisterDonor, onViewChange }: Register
           Congratulations, {registeredName}!
         </h1>
         <p className="text-sm text-neutral-500 max-w-lg mx-auto mb-8">
-          Your donor profile is registered successfully! As a security protocol, your profile has been queued as <strong className="text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">Pending</strong> for review.
+          Your donor profile has been registered successfully! It is now active and searchable in our public directory.
         </p>
 
         <div className="bg-white rounded-2xl border border-neutral-200 p-6 shadow-sm text-left max-w-md mx-auto mb-10 leading-relaxed space-y-3">
@@ -162,27 +162,27 @@ export default function RegisterView({ onRegisterDonor, onViewChange }: Register
           <div className="text-xs text-neutral-600 space-y-1">
             <p>• <strong>Name:</strong> {registeredName}</p>
             <p>• <strong>Blood Unit:</strong> {selectedBloodGroup}</p>
-            <p>• <strong>Status:</strong> Pending Admin Approval</p>
+            <p>• <strong>Status:</strong> <span className="text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded font-bold">Active & Approved</span></p>
             <p>• <strong>Location:</strong> {upazila || 'N/A'}, {district || 'N/A'}</p>
           </div>
           <div className="text-xs text-neutral-500 bg-neutral-50 p-3 rounded-xl border border-neutral-150">
-            💡 <strong>Simulation tip:</strong> Head over to the <strong>Admin Panel</strong> in the top header and click <strong>Approve</strong> next to your name to change your status to <strong>Approved</strong>. Once approved, you will immediately appear in the <strong>Find Donors</strong> directory search results!
+            ✅ Your donor profile is now part of our local healthcare network. If patients or hospitals need your blood group, they can contact you directly using your provided mobile/WhatsApp.
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
           <button
-            onClick={() => onViewChange('admin')}
-            className="px-6 py-3 bg-red-700 text-white font-bold text-xs rounded-xl hover:bg-neutral-800 transition-all flex items-center justify-center gap-1 cursor-pointer"
+            onClick={() => onViewChange('find-donors')}
+            className="px-6 py-3 bg-red-700 text-white font-bold text-xs rounded-xl hover:bg-neutral-800 transition-all flex items-center justify-center gap-1 cursor-pointer font-sans"
           >
-            Go to Admin Panel
+            Find Donors
           </button>
           <button
             onClick={() => {
               setRegSuccess(false);
               handleReset();
             }}
-            className="px-6 py-3 border border-neutral-300 rounded-xl text-neutral-700 font-semibold text-xs hover:bg-neutral-50 transition-all"
+            className="px-6 py-3 border border-neutral-300 rounded-xl text-neutral-700 font-semibold text-xs hover:bg-neutral-50 transition-all font-sans"
           >
             Register Another Donor
           </button>

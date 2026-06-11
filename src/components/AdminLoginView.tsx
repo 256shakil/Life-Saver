@@ -87,7 +87,7 @@ export default function AdminLoginView({ onLoginSuccess, onGoHome }: AdminLoginV
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="256shakil@gmail.com"
+                  placeholder="admin@lifesaver.org"
                   className="w-full pl-10 pr-4 py-3 bg-stone-50 dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-750 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-red-600 focus:border-red-600 transition-all text-neutral-800 dark:text-white placeholder-neutral-400"
                 />
               </div>
@@ -141,22 +141,7 @@ export default function AdminLoginView({ onLoginSuccess, onGoHome }: AdminLoginV
             </button>
           </form>
 
-          {/* Quick Helper Credentials Reminder Box */}
-          <div className="mt-8 pt-6 border-t border-dashed border-neutral-200 dark:border-neutral-800">
-            <p className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest text-center mb-2">
-              Cleared Authorization Keys
-            </p>
-            <div className="bg-neutral-50 dark:bg-neutral-850 p-3 rounded-lg space-y-1 text-[11px] text-neutral-600 dark:text-neutral-400 border border-neutral-100 dark:border-neutral-800 font-mono">
-              <div className="flex justify-between">
-                <span className="text-neutral-400">User ID:</span>
-                <span className="font-semibold text-neutral-900 dark:text-neutral-200 select-all">256shakil@gmail.com</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-neutral-400">Access Key:</span>
-                <span className="font-semibold text-neutral-900 dark:text-neutral-200 select-all">shakiladmin256</span>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Back Link bottom tray */}
