@@ -341,6 +341,143 @@ export default function FindDonorsView({ donors }: FindDonorsViewProps) {
               </>
             )}
           </div>
+
+          {/* Quick Filters Panel inside Finder Column */}
+          <div className="mt-5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-750 rounded-2xl p-5 shadow-xs space-y-4">
+            <div className="flex items-center justify-between text-xs font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-750 pb-2">
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px] text-red-700 dark:text-red-500">tune</span>
+                Quick Filters Panel
+              </span>
+              {(selectedBloodGroups.length > 0 || selectedCountry || availabilityFilter !== 'all') && (
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="text-[10px] text-red-750 dark:text-red-400 hover:underline hover:scale-105 transition-transform"
+                >
+                  Reset All Filters
+                </button>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Blood Group Quick Selection Block */}
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block font-sans">
+                  Blood Group Type
+                </label>
+                <div className="grid grid-cols-4 gap-1.5">
+                  {BLOOD_GROUPS.map(group => {
+                    const isSelected = selectedBloodGroups.includes(group);
+                    return (
+                      <button
+                        type="button"
+                        key={group}
+                        onClick={() => handleBloodGroupToggle(group)}
+                        className={`py-1.5 px-1 rounded-lg font-bold text-xs border text-center transition-all ${
+                          isSelected
+                            ? 'bg-red-700 dark:bg-red-650 text-white border-red-750 dark:border-red-600 shadow-sm'
+                            : 'bg-stone-50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800'
+                        }`}
+                      >
+                        {group}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Geographic Territory Block */}
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block font-sans">
+                  Location Geography
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <select
+                    value={selectedCountry}
+                    onChange={(e) => handleCountryChange(e.target.value)}
+                    className="w-full bg-stone-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-700 dark:text-neutral-300 focus:ring-1 focus:ring-red-600 outline-none cursor-pointer"
+                  >
+                    <option value="">All Countries</option>
+                    {countries.map(country => (
+                      <option key={country} value={country}>{country}</option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={selectedDivision}
+                    onChange={(e) => { setSelectedDivision(e.target.value); setSelectedUpazila(''); }}
+                    disabled={!selectedCountry}
+                    className="w-full bg-stone-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-700 dark:text-neutral-300 focus:ring-1 focus:ring-red-600 outline-none disabled:opacity-50 cursor-pointer"
+                  >
+                    <option value="">All Divisions</option>
+                    {divisions.map(div => (
+                      <option key={div} value={div}>{div}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                {selectedCountry && (
+                  <div className="grid grid-cols-2 gap-2 animate-fade-in pt-1">
+                    <select
+                      value={selectedDistrict}
+                      onChange={(e) => setSelectedDistrict(e.target.value)}
+                      className="w-full bg-stone-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-700 dark:text-neutral-300 focus:ring-1 focus:ring-red-600 outline-none cursor-pointer"
+                    >
+                      <option value="">All Districts</option>
+                      {districts.map(dist => (
+                        <option key={dist} value={dist}>{dist}</option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={selectedUpazila}
+                      onChange={(e) => setSelectedUpazila(e.target.value)}
+                      disabled={!selectedDivision}
+                      className="w-full bg-stone-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-2.5 text-xs text-neutral-700 dark:text-neutral-300 focus:ring-1 focus:ring-red-600 outline-none disabled:opacity-50 cursor-pointer"
+                    >
+                      <option value="">All Upazilas / areas</option>
+                      {upazilas.map(up => (
+                        <option key={up} value={up}>{up}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Active filters badges feedback bar */}
+            {(selectedBloodGroups.length > 0 || selectedCountry || availabilityFilter !== 'all') && (
+              <div className="pt-3 border-t border-neutral-100 dark:border-neutral-750 flex flex-wrap items-center gap-1.5 text-[11px] text-neutral-500 dark:text-neutral-400">
+                <span className="font-bold">Active:</span>
+                
+                {selectedBloodGroups.map(bg => (
+                  <span key={bg} className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 font-bold rounded-lg border border-red-100 dark:border-red-900/30">
+                    {bg}
+                    <button type="button" onClick={() => handleBloodGroupToggle(bg)} className="hover:text-neutral-900 dark:hover:text-white font-extrabold ml-1">✕</button>
+                  </span>
+                ))}
+
+                {selectedCountry && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-stone-100 dark:bg-neutral-900 text-stone-700 dark:text-neutral-300 font-bold rounded-lg border border-stone-200 dark:border-neutral-700">
+                    📍 {selectedUpazila || selectedDistrict || selectedDivision || selectedCountry}
+                    <button type="button" onClick={() => handleCountryChange('')} className="hover:text-neutral-900 dark:hover:text-white font-extrabold ml-1">✕</button>
+                  </span>
+                )}
+
+                {availabilityFilter !== 'all' && (
+                  <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg font-bold border ${
+                    availabilityFilter === 'available' 
+                      ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-150' 
+                      : 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-330 border-amber-150'
+                  }`}>
+                    ⚡ {availabilityFilter === 'available' ? 'Available' : 'Emergency Only'}
+                    <button type="button" onClick={() => setAvailabilityFilter('all')} className="hover:opacity-100 opacity-60 ml-1 font-extrabold">✕</button>
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Donors Listing Body */}
