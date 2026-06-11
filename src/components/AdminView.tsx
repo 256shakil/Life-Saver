@@ -29,9 +29,10 @@ interface AdminViewProps {
   onDeleteDonor: (id: string) => void;
   onEditDonor: (id: string, updatedFields: Partial<Donor>) => void;
   onRestoreDonors?: (restored: Donor[]) => void;
+  onLogout?: () => void;
 }
 
-export default function AdminView({ donors, onApproveDonor, onDeleteDonor, onEditDonor, onRestoreDonors }: AdminViewProps) {
+export default function AdminView({ donors, onApproveDonor, onDeleteDonor, onEditDonor, onRestoreDonors, onLogout }: AdminViewProps) {
   const [subTab, setSubTab] = useState<'dashboard' | 'donors' | 'inventory' | 'requests' | 'google-drive'>('dashboard');
   const [tableSearch, setTableSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -346,12 +347,23 @@ export default function AdminView({ donors, onApproveDonor, onDeleteDonor, onEdi
             </div>
           </div>
           
-          <button 
-            onClick={() => triggerExport('Report')}
-            className="w-full py-2.5 bg-red-700 text-white hover:bg-red-800 text-xs font-bold rounded-lg cursor-pointer active:scale-95 transition-transform"
-          >
-            Export Report
-          </button>
+          <div className="flex flex-col gap-2">
+            <button 
+              onClick={() => triggerExport('Report')}
+              className="w-full py-2 bg-red-700 text-white hover:bg-red-800 text-xs font-bold rounded-lg cursor-pointer active:scale-95 transition-transform"
+            >
+              Export Report
+            </button>
+            {onLogout && (
+              <button 
+                onClick={onLogout}
+                className="w-full py-2 bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white hover:bg-black text-[11px] font-bold rounded-lg cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-1.5"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                Sign Out Admin
+              </button>
+            )}
+          </div>
         </div>
       </aside>
 

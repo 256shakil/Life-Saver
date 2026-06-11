@@ -11,6 +11,7 @@ import HomeView from './components/HomeView';
 import FindDonorsView from './components/FindDonorsView';
 import RegisterView from './components/RegisterView';
 import AdminView from './components/AdminView';
+import AdminLoginView from './components/AdminLoginView';
 import { 
   fetchDonorsFromSupabase, 
   saveDonorToSupabase, 
@@ -22,6 +23,9 @@ import {
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewType>('home');
   const [donors, setDonors] = useState<Donor[]>([]);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem('isAdminAuthenticated') === 'true';
+  });
   const [supabaseStatus, setSupabaseStatus] = useState<{ type: 'success' | 'error' | 'pending'; message: string | null }>({
     type: 'pending',
     message: 'Synchronizing with Supabase database backend...'
@@ -151,6 +155,12 @@ export default function App() {
     }
   };
 
+  const handleAdminLogout = () => {
+    setIsAdminAuthenticated(false);
+    sessionStorage.removeItem('isAdminAuthenticated');
+    setCurrentView('home');
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-white text-neutral-800">
       {/* Top sticky navigation header */}
@@ -194,13 +204,24 @@ export default function App() {
         )}
 
         {currentView === 'admin' && (
-          <AdminView
-            donors={donors}
-            onApproveDonor={handleApproveDonor}
-            onDeleteDonor={handleDeleteDonor}
-            onEditDonor={handleEditDonor}
-            onRestoreDonors={handleRestoreDonors}
-          />
+          isAdminAuthenticated ? (
+            <AdminView
+              donors={donors}
+              onApproveDonor={handleApproveDonor}
+              onDeleteDonor={handleDeleteDonor}
+              onEditDonor={handleEditDonor}
+              onRestoreDonors={handleRestoreDonors}
+              onLogout={handleAdminLogout}
+            />
+          ) : (
+            <AdminLoginView 
+              onLoginSuccess={() => {
+                setIsAdminAuthenticated(true);
+                sessionStorage.setItem('isAdminAuthenticated', 'true');
+              }}
+              onGoHome={() => setCurrentView('home')}
+            />
+          )
         )}
       </div>
 
@@ -220,7 +241,14 @@ export default function App() {
               </p>
             </div>
 
-            <div className="text-xs space-y-1.5 md:text-right">
+            <div className="text-xs space-y-2 md:text-right flex flex-col md:items-end">
+              <button 
+                onClick={() => setCurrentView('admin')}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-750 border border-neutral-750 hover:border-red-500 text-neutral-300 hover:text-red-400 text-[11px] font-bold rounded-lg transition-all active:scale-95 cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[14px]">admin_panel_settings</span>
+                Oversight Admin Console
+              </button>
               <p>© 2026 Life Saver Network. All rights reserved.</p>
               <p className="text-neutral-500">
                 Created with precision. Styled using Tailwind CSS v4 & Lucide Icons.

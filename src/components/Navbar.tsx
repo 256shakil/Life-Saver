@@ -78,18 +78,6 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
       {/* Right Side buttons */}
       <div className="flex items-center gap-3">
         <button 
-          onClick={() => onViewChange('admin')}
-          className={`px-4 py-2 font-semibold text-xs border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all font-sans ${
-            currentView === 'admin' 
-              ? 'bg-neutral-100 text-red-700 border-red-200' 
-              : 'text-neutral-700 dark:text-neutral-300'
-          }`}
-        >
-          <span className="hidden sm:inline">Admin Panel</span>
-          <span className="sm:hidden">Admin</span>
-        </button>
-
-        <button 
           onClick={() => onViewChange('register')}
           className={`px-4 py-2 font-semibold text-xs text-white rounded-lg active:scale-95 transition-all shadow-sm font-sans ${
             currentView === 'register'
